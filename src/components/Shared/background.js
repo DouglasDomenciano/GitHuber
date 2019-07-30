@@ -10,10 +10,10 @@ export default function Background(props) {
     <LinearGradient
         start={{x: 0, y: 0}} end={{x: 1, y: 1}}
         locations={[0,1]}
-        colors={['#00F372', '#6F07F6']}
+        colors={['#38784E', '#229F2B']}
+        // colors={['#00F372', '#6F07F6']}
         style={styles.Background}>
         {props.children}
-        <Text style={styles.FooterText}>GitHuber</Text>
       </LinearGradient>
   );
 }
