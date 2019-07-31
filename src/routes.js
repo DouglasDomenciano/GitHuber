@@ -3,6 +3,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import Login from "./components/Login";
 import UsersList from "./components/UsersList";
 import ReposList from "./components/ReposList";
+import UserProfile from "./components/UserProfile";
 
 const Navigator = createSwitchNavigator({ 
     Login: {
@@ -11,10 +12,13 @@ const Navigator = createSwitchNavigator({
     UsersList: {
         screen: UsersList
     },
+    UserProfile: {
+        screen: UserProfile
+    },
     ReposList: {
         screen: ReposList
     }
-},{ initialRouteName: "UsersList" })
+},{ initialRouteName: "UserProfile" })
 
 const Routes = createAppContainer(Navigator);
 

@@ -14,7 +14,7 @@ export default class Main extends Component {
         <Image source={octacatLogo} style={styles.Logo}/>
         <TextInput 
             placeholder="Digite para buscar" 
-            style={SharedStyles.InputWithBorder}
+            style={[styles.Input, SharedStyles.InputWithoutBorder, SharedStyles.ShadowBox]}
             placeholderTextColor="#FFF">
         </TextInput>
         <View style={styles.ButtonsContainer}>
@@ -34,18 +34,28 @@ export default class Main extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   Logo: {
     width: 200,
     height: 200,
-    marginBottom: 50,
-    marginTop: getStatusBarHeight() + 100,
+    marginBottom: 40,
+    marginTop: getStatusBarHeight() + 80,
     alignSelf: 'center',
     opacity: 1
   },
+  Input: {
+    backgroundColor: 'rgba(75,170,88, 0.1)',
+    borderRadius: 10,
+    marginLeft: 40,
+    marginRight: 40,
+    marginBottom: 50,
+  },
   ButtonsContainer: {
+    marginLeft: 20,
+    marginRight: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-around'
   },
   Button:{
       width: 150,

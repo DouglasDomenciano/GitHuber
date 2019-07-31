@@ -17,21 +17,15 @@ export default {
         alignSelf: 'stretch',
         color: '#FFF',
         textAlign: 'center',
-        marginBottom: 50,
         fontStyle: 'italic',
         fontSize: 20,
         fontFamily: 'Segoe Ui',
     },
     ShadowBox: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 1, 
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: -10 },
+        shadowOpacity: 1.0,
+        shadowRadius: 5,
+        elevation: 2, 
     },
-    BorderedViewDefault: {
-        borderWidth: 1,
-        borderColor: Colors.InpurBorderDefault,
-        borderRadius: 10,
-    }
 }
