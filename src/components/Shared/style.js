@@ -24,8 +24,8 @@ export default {
     ShadowBox: {
         shadowColor: 'black',
         shadowOffset: { width: 0, height: -10 },
-        shadowOpacity: 1.0,
-        shadowRadius: 5,
-        elevation: 2, 
+        shadowOpacity: 0.7,
+        shadowRadius: 0,
+        elevation: 1.5, 
     },
 }

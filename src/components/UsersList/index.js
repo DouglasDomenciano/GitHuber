@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { StyleSheet, TextInput, TouchableOpacity, View, ScrollView } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View, ScrollView, Dimensions } from 'react-native';
 import Background from '../Shared/background'
 import SharedStyles from '../Shared/style'
 import CardUser from './CardUser'
 import FooterButton from '../Shared/FooterButton'
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+
 
 export default class UsersList extends Component {
+  handleNavigateToLogin = () => this.props.navigation.navigate(`Login`);
+  handleNavigateToProfile = () => this.props.navigation.navigate('UserProfile');
+
   render() {
     return (
       <Background>
@@ -15,40 +20,47 @@ export default class UsersList extends Component {
             <TextInput 
               placeholder="Digite o nome de usuário" 
               style={SharedStyles.InputWithoutBorder}
-              placeholderTextColor="#FFF">
+              placeholderTextColor="#FFF"
+              fontSize={17}
+              >
             </TextInput>
-            <Icon name="search" size={20} color="#FFF" style={styles.SearchIcon}/>
+            <TouchableOpacity style={styles.SearchIcon}>
+              <Icon name="search" size={20} color="#FFF" />
+            </TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.ScrollCardsUsers}>
-            <CardUser />
-            <CardUser />
+            <CardUser handleNavigate = {this.handleNavigateToProfile}/>
+            <CardUser handleNavigate = {this.handleNavigateToProfile}/>
+            <View style={{width: 20}} />
           </ScrollView>
         </ScrollView>
-        <FooterButton />
+        <FooterButton iconName='github-alt' iconSize={30} handleNavigate={this.handleNavigateToLogin}/>
       </Background>
     );
   }
 }
 
+const { height, width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   ScrollCardsUsers: {
-    marginTop: 40,
+    height: (height / 10) * 7.5,
+    paddingLeft: 10,
   },
   SearchContainer: {
     flex: 1,
-    marginTop: 30,
+    marginTop: getStatusBarHeight(),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
     height: 50,
-    width: 350,
+    width: (width / 10) * 9,
     backgroundColor: 'rgba(75,170,88, 0.1)',
     borderRadius: 10
   },
   SearchIcon: {
-    marginRight: 15,
-    marginLeft: 5
+    position: 'absolute',
+    right: 25,
   },
 })
 

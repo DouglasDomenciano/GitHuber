@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import Dougras from '../../assets/Dougras.png'
 import SharedStyles from '../Shared/style'
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
+
+
 
 export default class CardUser extends Component {
   render() {
@@ -10,8 +13,8 @@ export default class CardUser extends Component {
         <View style={styles.CardContainer}>
             <View style={[styles.UserCard, SharedStyles.ShadowBox]}>
                 <View style={styles.UserIcons}>
-                    <Icon name="users" size={30} color="#000" style={{opacity: 0.7}}/>
-                    <Icon name="github-alt" size={30} color="#000" style={{opacity: 0.7}}/>
+                    <Icon name="users" size={20} color="#FFF" style={{opacity: 0.8}}/>
+                    <Icon name="github" size={20} color="#FFF" style={{opacity: 0.8}}/>
                 </View>
                 <View style={styles.UserIconsText}>
                     <Text style={{color: '#FFF', fontWeight: 'bold'}}>2555</Text>
@@ -23,7 +26,7 @@ export default class CardUser extends Component {
                     <Text style={styles.UserName}>UserName</Text>
                 </View>
                 <Text style={styles.bio}>Lorem Ipsum is simply dummy text of theprinting and typesetting industry. Lorem...</Text>
-                <TouchableOpacity style={[styles.SubmitButton, SharedStyles.ShadowBox]} onPress={() => this.props.navigation.navigate('UserProfile')}>
+                <TouchableOpacity style={[styles.SubmitButton, SharedStyles.ShadowBox]} onPress={() => this.props.handleNavigate()}>
                     <Text style={styles.SubmitButtonText}>Selecionar</Text>
                 </TouchableOpacity>
             </View>
@@ -32,13 +35,15 @@ export default class CardUser extends Component {
   }
 }
 
+const { height, width } = Dimensions.get('window')
+
 const styles = StyleSheet.create({
     UserCard: {
-      height: 500,
-      width: 340,
+      height: (height / 10) * 7,
+      width: (width / 10) * 8.9,
       marginTop: 20,
       marginBottom: 20,
-      marginHorizontal: 30,
+      marginHorizontal: 7,
       paddingTop: 5,
       paddingLeft: 20,
       paddingRight: 20,
@@ -50,13 +55,13 @@ const styles = StyleSheet.create({
       width: 140,
       borderRadius: 100,
       alignSelf: 'center',
-      marginTop: -45
+      marginTop: -60
     },
     UserIcons: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       marginBottom: 5,
-      marginTop: 10
+      marginTop: 20
     },
     UserIconsText:{
       flexDirection: 'row',
@@ -64,22 +69,22 @@ const styles = StyleSheet.create({
     },
     NameAndUserName: {
         alignSelf: 'center',
-        marginTop: 30
+        marginTop: 10
     },
     TextName: {
       color: '#FFF',
       fontWeight: 'bold',
-      fontSize: 40,
+      fontSize: 32,
     },
     UserName: {
       color: '#FFF',
       fontStyle: 'italic',
-      fontSize: 30,
+      fontSize: 23,
       alignSelf: 'center'
     },
     bio: {
-      marginTop: 30,
-      marginBottom: 30,
+      marginTop: 20,
+      marginBottom: 20,
       color: '#FFF',
       fontSize: 15,
       alignSelf: 'center'
@@ -92,7 +97,6 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: 'center',
       alignSelf: 'center',
-      marginTop: 20
     },
     SubmitButtonText: {
       color: '#FFF',

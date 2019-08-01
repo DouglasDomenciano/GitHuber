@@ -8,8 +8,8 @@ import { TouchableOpacity, StyleSheet } from 'react-native';
 export default class Shared extends Component {
   render() {
     return (
-        <TouchableOpacity style={[styles.BackToHome, SharedStyles.ShadowBox]} onPress={() => this.props.navigation.navigate(`${this.props.screen}`)}>
-          <Icon name="home" size={30} color="#FFF" style={styles.Icon} />
+        <TouchableOpacity style={[styles.BackToHome, SharedStyles.ShadowBox]} onPress={() => this.props.handleNavigate()}>
+          <Icon name={this.props.iconName} size={this.props.iconSize} color="#229F2B" style={styles.Icon} />
         </TouchableOpacity>
     );
   }
@@ -17,10 +17,9 @@ export default class Shared extends Component {
 
 const styles = StyleSheet.create({
     BackToHome: {
-      backgroundColor: 'rgba(75,170,88, 0.1)',
-      bottom: 15,
-      height: 60,
-      width: 60,
+      backgroundColor: 'rgba(255,255,255, 1)',
+      height: 50,
+      width: 50,
       borderRadius: 50,
       alignSelf: 'center',
       alignItems: 'center',
@@ -29,6 +28,6 @@ const styles = StyleSheet.create({
       bottom: 15
     },
     Icon: {
-      opacity: 0.8
+      opacity: 1
     }
   })

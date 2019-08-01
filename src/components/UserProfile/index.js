@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-import { View, StyleSheet, TextInput, Image, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, TextInput, Image, Text, ScrollView ,Dimensions, TouchableOpacity } from 'react-native';
 import RepoCard from '../Shared/RepoCards'
 import FooterButton from '../Shared/FooterButton'
 import Background from '../Shared/background'
 import SharedStyles from '../Shared/style'
+import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 import Dougras from '../../assets/Dougras.png'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 
 export default class UserProfile extends Component {
+
+  handleNavigateToUserList = () => {
+    this.props.navigation.navigate(`UsersList`)
+  }
+  handleNavigateToRepoDetails = () => {
+    this.props.navigation.navigate(`RepoDetails`)
+  }
   render() {
     return (
     <Background >
@@ -25,16 +33,22 @@ export default class UserProfile extends Component {
         <TextInput 
           placeholder="Filtrar repositório" 
           style={SharedStyles.InputWithoutBorder}
-          placeholderTextColor="#FFF">
+          placeholderTextColor="#FFF"
+          fontSize={17}>
         </TextInput>
-        <Icon name="search" size={20} color="#FFF" style={styles.SearchIcon}/>
+        <TouchableOpacity style={styles.SearchIcon}>
+          <Icon name="search" size={20} color="#FFF" />
+        </TouchableOpacity>
       </View>
       <View style={styles.ResposCardsContainer}>
-        <RepoCard/>
-        <RepoCard/>
-        <RepoCard/>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <RepoCard handleNavigate={this.handleNavigateToRepoDetails}/>
+          <RepoCard handleNavigate={this.handleNavigateToRepoDetails}/>
+          <RepoCard handleNavigate={this.handleNavigateToRepoDetails}/>
+          <View style={styles.EmptySpace}></View>
+        </ScrollView>
       </View>
-      <FooterButton/>
+      <FooterButton iconName='chevron-left' iconSize={25} handleNavigate={this.handleNavigateToUserList}/>
     </Background>
     );
   }
@@ -44,32 +58,35 @@ const { height, width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   UserInfos: {
     flexDirection: 'row',
-    margin: 25
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: getStatusBarHeight() -10,
   },
   UserPicture: {
-    height: 80,
-    width: 80,
+    height: 90,
+    width: 90,
     borderRadius: 100,
     marginRight: 20
    },
   Name : {
     color: '#FFF',
     fontWeight: 'bold',
-    fontSize: 35,
+    fontSize: 28,
   },
   UserName : {
     color: '#FFF',
     fontStyle: 'italic',
-    fontSize: 25,
+    fontSize: 17,
   },
   SearchContainer: {
-    marginTop: 30,
+    marginTop: 15,
+    height: 50,
+    width: width - 40,
+    marginBottom: 0,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    height: 50,
-    width: width - 40,
     backgroundColor: 'rgba(75,170,88, 0.1)',
     borderRadius: 10
   },
@@ -77,4 +94,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20
   },
+  ResposCardsContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
+  EmptySpace: {
+    height: 60
+  }
 })

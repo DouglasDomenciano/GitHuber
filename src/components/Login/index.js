@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, TextInput, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TextInput, Text, TouchableOpacity, View, Dimensions } from 'react-native';
 import Background from '../Shared/background'
 import octacatLogo from '../../assets/octacat.png'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
-import Colors from '../Shared/colors'
 import  SharedStyles  from '../Shared/style'
 
 export default class Main extends Component {
@@ -15,16 +14,17 @@ export default class Main extends Component {
         <TextInput 
             placeholder="Digite para buscar" 
             style={[styles.Input, SharedStyles.InputWithoutBorder, SharedStyles.ShadowBox]}
-            placeholderTextColor="#FFF">
+            placeholderTextColor="#FFF"
+            fontSize={15}>
         </TextInput>
         <View style={styles.ButtonsContainer}>
           <View style={styles.ShadowBox}>
-            <TouchableOpacity style={styles.Button} onPress={() => this.props.navigation.navigate('UsersList')}>
+            <TouchableOpacity style={[styles.Button, SharedStyles.ShadowBox]} onPress={() => this.props.navigation.navigate('UsersList')}>
               <Text style={styles.ButtonText}>Buscar</Text>
               <Text style={styles.ButtonText}>Usuário</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.Button} onPress={() => this.props.navigation.navigate('ReposList')}>
+          <TouchableOpacity style={[styles.Button, SharedStyles.ShadowBox]} onPress={() => this.props.navigation.navigate('ReposList')}>
             <Text style={styles.ButtonText}>Buscar</Text>
             <Text style={styles.ButtonText}>Repositório</Text>
           </TouchableOpacity>
@@ -34,20 +34,21 @@ export default class Main extends Component {
   }
 }
 
-
+const { height, width } = Dimensions.get('window')
 const styles = StyleSheet.create({
   Logo: {
-    width: 200,
-    height: 200,
+    width: 180,
+    height: 180,
     marginBottom: 40,
-    marginTop: getStatusBarHeight() + 80,
+    marginTop: getStatusBarHeight() + 10,
     alignSelf: 'center',
     opacity: 1
   },
   Input: {
+    width: (width / 10) * 8.5,
     backgroundColor: 'rgba(75,170,88, 0.1)',
     borderRadius: 10,
-    marginLeft: 40,
+    marginLeft: 25,
     marginRight: 40,
     marginBottom: 50,
   },
@@ -58,10 +59,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   Button:{
-      width: 150,
-      height: 150,
-      backgroundColor: Colors.ButtomDefault,
-      borderRadius: 20,
+      width: (width / 10) * 4,
+      height: (height / 10) * 2,
+      backgroundColor: 'rgba(75,170,88, 0.1)',
+      borderRadius: 15,
       justifyContent: 'center',
       alignItems: 'center',
   },
